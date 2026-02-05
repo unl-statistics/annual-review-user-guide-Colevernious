@@ -4,3 +4,4 @@ Pick some subset of the information covered in your annual review article that y
 
 Identify the scope of your user guide - what will you cover? Specific software packages? When to use or not to use a specific technique?
 
+In my user guide, I would like to dive deeper into "dark data." Dark data is a term that is used to describe data that is lost or distorted before analysis (the most common being missing/incomplete data). In my user guide, I would like to discuss what it is, where we commonly see it in real life, and how statisticians deal with it to get the results they are looking for. As far as packages to discuss, I will most likely cover packages such like tidyr, stringr, and lubridate in R. For the packages that I end up discussing, I will also discuss when and when not to use them.
