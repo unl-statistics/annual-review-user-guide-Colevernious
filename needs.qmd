@@ -1,7 +1,7 @@
 # Needs Assessment {.appendix}
 
 What does someone trying to accomplish your chosen task need help with? 
-Someone who is trying to accomplish my chosen task would likely need help with what to do with dark data and how to handle it. We see dark data all the time in several areas of our daily lives, and yet the ways of how to assess and evaluate this dark data is not often explained enough.
+Someone who is trying to accomplish the chosen task would likely need help with what to do with dark data and how to handle it. We see dark data all the time in several areas of our daily lives, and yet the ways of how to assess and evaluate this dark data is not often explained enough.
 
 What parts are likely to be tricky? 
 Certain parts that may be tricky would include deciding exactly how this data needs to be handled, or if the data can just be bypassed. Another tricky concept would include deciphering what to do based on the type of dark data that is being dealt with.

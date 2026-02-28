@@ -1,7 +1,7 @@
 
 # Task Analysis {.appendix}
 
-Here are some questions to guide you through the process of doing a task analysis. You don't have to specifically answer each one of these (and some may not apply), but they should get you started thinking in the right direction. 
+Here are some questions to guide you through the process of doing a task analysis. You don't have to specifically answer each one of these (and some may not apply), but they should get you started thinking in the right direction.
 
 What are the prerequisites, for both knowledge and e.g. software setup? 
   - Basic knowledge of coding in R, specifically basics on how to view a data set and packages like ggplot2 
