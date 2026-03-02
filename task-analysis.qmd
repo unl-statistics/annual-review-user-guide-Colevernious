@@ -5,7 +5,7 @@ Here are some questions to guide you through the process of doing a task analysi
 
 What are the prerequisites, for both knowledge and e.g. software setup? 
   - Basic knowledge of coding in R, specifically basics on how to view a data set and packages like ggplot2 
-  - Recognizing missing values
+  - Recognizing missing values and gaps in the data
   - Knowing the goal you have in mind for what the dark data will accomplish when it is handled
 
 What are the basic requirements for any data that the method is used on? 
