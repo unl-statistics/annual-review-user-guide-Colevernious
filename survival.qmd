@@ -1,0 +1,40 @@
+
+# Censored Data and the `survival` package
+
+The `survival` package is designed to help statisticians deal with censored data. Censored data occurs when data is incomplete or partially known. This will most commonly happen when dealing with topics such as machine failure and death. The three main components of censored data includes left censoring (the event occurred before the study period), right censoring (the event occurred after the study period), and interval censoring (event occurred between two certain points, but that point is unknown). For a more in depth breakdown on the function of this package, @rich2010 has made an article that takes you further in depth into overall survival analysis and other ways to view/handle censored data.
+
+## Installation and Data Loading
+
+Install and load the necessary packages (the data set in the survival package will be used in this guide). The lung data set in the survival package examines 228 advanced lung cancer patients and their survival times. Form this data, we will examine censored data, and in this case, censored data means that the patient died before the study was concluded.
+
+```{r}
+# install.packages(survival)
+# install.packages(dplyr)
+# install.packages("ggsurvfit")
+library(survival)
+library(dplyr)
+library(ggsurvfit)
+data2 <- lung
+```
+
+## Examining Survival Times
+
+Use the "Surv" function to look at survival times of the first 10 patients.
+
+```{r}
+Surv(lung$time, lung$status)[1:10]
+```
+
+In this table, a plus sign next to a value will indicate that the value is right censored (patient died after the study period).
+
+## Identifying Censored Values
+
+Knowing which values are censored in a data set can help with further analysis. Now, we are going to look at the amount of time in days until an event (in this case, a patient dying) by creating a Kaplan-Meier plot. The purpose of this plot is to show us the survival probability of patients as time goes on based on sex. To do this, we will use the "survfit2" function to create a survival curve and assign our two variables to the graph. Also, we will use "add_confidence_interval" and "add_risk_table" to give us a better understanding of how the data can fluctuate and how many values we are seeing at each time stamp.
+
+```{r}
+survfit2(Surv(time, sex) ~ 1, data = lung) |> 
+  ggsurvfit() +
+  labs(x = "Days", y = "Overall survival probability") + 
+  add_confidence_interval() +
+  add_risktable()
+```
