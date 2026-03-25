@@ -1,6 +1,7 @@
-# Introduction:
+# Introduction
 
 Dark data is defined by @craiu2023 as "any kind of data that are lost or distorted before analysis". The most common forms of dark data that data scientists and statisticians come across include missing data, as well as censored data, both of which will be the main discussion points in this guide. By the end of this user guide, you should be able to identify these two types of dark data, and also have an increased set of skills to be able to handle them.
+
 
 # Pre-Requisites:
 
@@ -117,3 +118,4 @@ After reading this user guide, you should hopefully have a better idea on how to
 3.  For more information on the different types of dark data, including ones that were not discussed in this guide, check out @craiu2023 by Radu V. Craiu.
 
     <https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-040220-015348>
+

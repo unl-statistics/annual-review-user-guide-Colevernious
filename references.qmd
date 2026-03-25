@@ -2,24 +2,3 @@
 
 ::: {#refs}
 :::
-
-Craiu, R. V., Gong, R., and Meng, X.-L. (2023), “Six Statistical Senses,” Annual Review of Statistics and Its Application, Annual Reviews, 10, 699–725. https://doi.org/10.1146/annurev-statistics-040220-015348.
-
-rich2010,
-	title = {A practical guide to understanding Kaplan{-}Meier curves},
-	author = {Rich, Jason T. and Neely, J. Gail and Paniello, Randal C. and Voelker, Courtney C. J. and Nussenbaum, Brian and Wang, Eric W.},
-	year = {2010},
-	month = {09},
-	date = {2010-09},
-	journal = {Otolaryngology{\textendash}Head and Neck Surgery},
-	pages = {331--336},
-	volume = {143},
-	number = {3},
-	doi = {10.1016/j.otohns.2010.05.007},
-	url = {https://aao-hnsfjournals.onlinelibrary.wiley.com/doi/10.1016/j.otohns.2010.05.007},
-	langid = {en}
-
-visdat,
-	title = {vis{\_}dat},
-	url = {https://cran.r-project.org/web/packages/naniar/vignettes/getting-started-w-naniar.html}
-
