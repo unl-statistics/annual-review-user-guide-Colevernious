@@ -1,16 +1,18 @@
-Introduction:
+# Introduction:
 
-Dark data is defined by @craiu2023 as "any kind of data that are lost or distorted before analysis". The most common forms of dark data that data scientists and statisticians come across include missing data, as well as censored data, both of which will be the main discussion points in this guide. By the end of this user guide, you should be able to identify these two types of dark data, and also have an increased set of skills to be able to handle them. Check out
+Dark data is defined by @craiu2023 as "any kind of data that are lost or distorted before analysis". The most common forms of dark data that data scientists and statisticians come across include missing data, as well as censored data, both of which will be the main discussion points in this guide. By the end of this user guide, you should be able to identify these two types of dark data, and also have an increased set of skills to be able to handle them.
 
-Pre-Requisites: In order to be able to replicate and follow along with the steps and functions that will be discussed in this user guide, it is assumed that the user has RStudio downloaded, as well as the latest version of R installed. Also, it will be assumed that you have a basic understanding of common commands in R, such as installing packages and basic data handling techniques, as well as data visualization (ggplot2).
+# Pre-Requisites:
 
-Steps(with code and graphics examples):
+In order to be able to replicate and follow along with the steps and functions that will be discussed in this user guide, it is assumed that the user has RStudio downloaded, as well as the latest version of R installed. Also, it will be assumed that you have a basic understanding of common commands in R, such as installing packages and basic data handling techniques, as well as data visualization (ggplot2). To follow along with this user guide, you will need to install the naniar and survival packages. When working with your own data set, it is expected that your data includes missing values (typically N/A values), or the time of an event of interest is partially unknown (commonly seen in healthcare with survival analysis). In this user guide, I will be using one data set that is built into each package discussed ("airquality" data set for the naniar package, and the "lung" data set for the survival package).
 
--Naniar package (missing data)
+# Steps(with code and graphics examples):
 
-The naniar package is designed specifically to help visualize missing data. More specifically, it assists in helping deal with NA values that show up in certain data sets. These missing values often show up in certain circumstances such as questionnaires, where the respondent chooses not to answer, as well as things such as technological issues and participation dropouts. In these steps, the main goal is to show you how to make simple visual plots that make it easy to identify and locate missing values in a data set. @visdat has written an article that explains many different ways that the naniar package can be utilized in the data science world.
+## Naniar package (missing data)
 
-1.  Install and load necessary packages and read in your data (I'll be using the "airquality" data set in the naniar package for this demonstration). This data set is built into the naniar package and it observes 153 measurements of air qaulity in NYC over the summer of 1973.
+The naniar package is designed specifically to help visualize missing data. More specifically, it assists in helping deal with NA values that show up in certain data sets. These missing values often show up in certain circumstances such as questionnaires, where the respondent chooses not to answer, as well as things such as technological issues and participation dropouts. In these steps, the main goal is to show you how to make simple visual plots that make it easy to identify and locate missing values in a data set. @visdat has written an article that explains many different ways that the naniar package can be utilized in the data science world. The data set that will be used in this example (the airquality data set) records 153 days of air quality and other meteorological measurements such as the ozone, solar radiation, wind, and temperature from the summer months in New York City, 1973.
+
+1.  Install and load necessary packages and read in your data (I'll be using the "airquality" data set in the naniar package for this demonstration, but the same aspects and techniques should work for any data set with missing values).
 
 ```{r}
 # install.packages(naniar)
@@ -47,9 +49,24 @@ miss_var_summary(airquality)
 
 This table also displays the amount of missing values in each variable, except now we've added a new column that tells us the percentage of all the values in each variable that are missing. When thinking about handling missing data, it is important to consider the context of why this data is important. A table will make it easier to display information to other people, but a graph may be more helpful to help locate where these missing values are at.
 
--Survival package The survival package is designed to help statisticians deal with censored data. Censored data occurs when data is incomplete or partially known. This will most commonly happen when dealing with topics such as machine failure and death. The three main components of censored data includes left censoring (the event occurred before the study period), right censoring (the event occurred after the study period), and interval censoring (event occurred between two certain points, but that point is unknown). For a more in depth breakdown on the function of this package, @rich2010 has made an article that takes you further in depth into overall survival analysis and other ways to view/handle censored data.
+5. Use geom_miss_point and ggplot to make a scatter plot and use a facet function to make a separate plot for each month.
 
-1.  Install and load the necessary packages (the data set in the survival package will be used in this guide). The lung data set in the survival package examines 228 advanced lung cancer patients and their survival times. Form this data, we will examine censored data, and in this case, censored data means that the patient died before the study was concluded.
+```{r}
+ggplot(airquality, aes(x = Ozone, y = Solar.R)) + 
+  geom_miss_point() +
+  facet_wrap(~Month)
+```
+The geom_miss_var function will plot the missing values 10% less than the minimum value in that variable instead of just reporting the point as NA. 
+
+### Application
+
+Even though a specific data set was used in this example, it is easy to transfer this into any data set that you are working on. It's important to know what significance these missing values hold in the context of the data, so you know which function is the most appropriate to use and which one will most efficiently get you the answers you need. If you just want to know where these missing values are located in the data, functions like miss_var_summary and gg_miss_var will likely give you what you're looking for. If you are more so looking to find out what would happen if those missing values were there, use geom_miss_point to get a good estimate on where that data likely would've fit in with the rest of the data.
+
+## Survival package
+
+The survival package is designed to help statisticians deal with censored data. Censored data occurs when data is incomplete or partially known. This will most commonly happen when dealing with topics such as machine failure and death. The three main components of censored data includes left censoring (the event occurred before the study period), right censoring (the event occurred after the study period), and interval censoring (event occurred between two certain points, but that point is unknown). The data set in the survival package will be used in this guide. The lung data set in the survival package examines 228 advanced lung cancer patients and their survival times. In the data set, variables such as age, status (censored or dead), survival time, and sex are included. From this data, we will examine censored data, and in this case, censored data means that the patient died before the study was concluded.
+
+1.  Install and load the necessary packages.
 
 ```{r}
 # install.packages(survival)
@@ -79,4 +96,24 @@ survfit2(Surv(time, sex) ~ 1, data = lung) |>
   add_risktable()
 ```
 
-Conclusion After reading this user guide, you should hopefully have a better idea on how to identify these two types of dark data, as well as knowing different ways of handling and analyzing them. To many, these data points may seem irrelevant or unimportant, but those people don't see how these values can play a crucial role in the overall results of a data set, as well as the impact they could have on future experiments and studies. The naniar package will come in handy for a variety of applications, as missing values are found a lot more frequently then censored data. However, that does not mean that knowing how to handle censored data will not be useful, as in this case where we are in the healthcare field, it will also play a crucial role in other areas of our lives. IF we can increase our awareness and knowledge of the many types of dark data, it will make our jobs as data scientists much easier and it will likely give us better and more accurate results for our studies.
+### Application
+
+While censored data isn't as common in a statisticians day-to-day life, it is still important to know how to handle it. Even though the information may not be complete, excluding this information would lead to highly inaccurate results and underestimating survival times. In terms of what to do with this information, just like the missing values, you should determine what purpose these values will hold. Simply knowing that a patient survived a certain amount of days is better than ignoring the data point entirely. In addition, one of the best ways to visualize censored data is to use Kaplan-Meier plots. These plots will give you a good estimate as to how long a patient survived, even if it happens after the study ends.
+
+# Conclusion
+
+After reading this user guide, you should hopefully have a better idea on how to identify these two types of dark data, as well as knowing different ways of handling and analyzing them. To many, these data points may seem irrelevant or unimportant, but those people don't see how these values can play a crucial role in the overall results of a data set, as well as the impact they could have on future experiments and studies. The naniar package will come in handy for a variety of applications, as missing values are found a lot more frequently then censored data. However, that does not mean that knowing how to handle censored data will not be useful, as in this case where we are in the healthcare field, it will also play a crucial role in other areas of our lives. If we can increase our awareness and knowledge of the many types of dark data, it will make our jobs as data scientists much easier and it will likely give us better and more accurate results for our studies.
+
+# Additional Resources
+
+1.  For more information on how to use the naniar package to visualize missing values, check out @visdat by Nicholas Tierney.
+
+    <https://cran.r-project.org/web/packages/naniar/vignettes/getting-started-w-naniar.html>
+
+2.  For more information on the survival package and censored data, check out @survival by Emily C. Zabor.
+
+    <https://www.emilyzabor.com/survival-analysis-in-r.html>
+
+3.  For more information on the different types of dark data, including ones that were not discussed in this guide, check out @craiu2023 by Radu V. Craiu.
+
+    <https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-040220-015348>
