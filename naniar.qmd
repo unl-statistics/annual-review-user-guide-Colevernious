@@ -1,0 +1,49 @@
+# Visualizing Missing Data with `naniar`
+
+The `naniar` package is designed specifically to help visualize missing data. More specifically, it assists in helping deal with NA values that show up in certain data sets. These missing values often show up in certain circumstances such as questionnaires, where the respondent chooses not to answer, as well as things such as technological issues and participation dropouts. In these steps, the main goal is to show you how to make simple visual plots that make it easy to identify and locate missing values in a data set. @visdat has written an article that explains many different ways that the `naniar` package can be utilized in the data science world.
+
+
+## Installation and Loading Data
+
+Install and load necessary packages and read in your data (I'll be using the "airquality" data set in the `naniar` package for this demonstration). This data set is built into the `naniar` package and it observes 153 measurements of air qaulity in NYC over the summer of 1973.
+
+```{r}
+# install.packages(naniar)
+# install.packages(ggplot2)
+library(naniar)
+library(ggplot2)
+data <- airquality
+```
+
+
+## Scatter Plots with Missingness
+
+Create a scatter plot using geom_point in the ggplot package displaying the relationship between the Solar.R variable (assign to x-axis) and the Ozone variable (y-axis).
+
+```{r}
+ggplot(data, aes(x=Solar.R, y=Ozone)) +
+         geom_point() +
+  ggtitle("Scatterplot of Solar vs Ozone")
+  
+```
+
+This graph will exclude NA values and instead will tell you that 42 rows have been removed because they contain missing values. This doesn't give you anything to work with regarding further analysis of these missing values.
+
+Use gg_miss_var to visualize the missing data.
+
+```{r}
+gg_miss_var(airquality)
+```
+
+This function counts the missing variables that are found in each variable of the data set and gives you a simple chart to visualize where these missing values are located. This visualization can come in handy for experimental designing and determining which aspects of the experiment gather the most missing values and adjustments can be made accordingly.
+
+## Summarizing Missing Data
+
+Create a data frame using miss_var_summary
+
+```{r}
+miss_var_summary(airquality)
+```
+
+This table also displays the amount of missing values in each variable, except now we've added a new column that tells us the percentage of all the values in each variable that are missing. When thinking about handling missing data, it is important to consider the context of why this data is important. A table will make it easier to display information to other people, but a graph may be more helpful to help locate where these missing values are at.
+
