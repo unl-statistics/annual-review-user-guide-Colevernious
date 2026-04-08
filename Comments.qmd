@@ -1,0 +1,15 @@
+# Cole Boyer
+
+- (references) Your references.bib file is incomplete. You seem to have tried to use a combination of bibtex and plain text references, which will never work. I've fixed it - please take a look at the result so that you don't have the same issues on the business report.
+
+- (Grammar, Spelling, etc.) 1st paragraph ends with a fragment "Check out"
+
+- (Formatting) No use of section headers or separate files -- as is expected using quarto markdown. This is why your TOC has only one main entry -- "install.packages(naniar)" -- which is not ideal.
+
+- No explanation of how to do a general task - you demonstrate the specific task of visualizing missing data in the airquality data set, but the goal is to show someone how to visualize dark data *in general* with the idea that they bring their own data. (Steps Descriptions/examples)
+
+- (Introduction prerequisites) Should mention that the user needs to install the survival and naniar packages. In addition, you should discuss any data prerequisites the user's data needs to meet.
+
+- (Steps Descriptions/examples) naniar includes functions to augment scatterplots with missing data -- those would be more appropriate to demonstrate. it's not just `gg_miss_var()`. In fact, the vignette you cited has a much better example and it's not clear to me that you've gone beyond the vignette (as you were instructed to do if you referenced a vignette).  (Steps)
+
+- No Additional resources or suggestions for places people should go for help if the guide wasn't sufficient.
